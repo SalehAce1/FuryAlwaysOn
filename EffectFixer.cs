@@ -20,13 +20,19 @@ namespace FuryAlwaysOn
         }
         IEnumerator WaitForPlayer()
         {
-            yield return new WaitForSeconds(5f); //Waits for Hero to be loaded
+            yield return new WaitWhile(() => HeroController.instance == null); //Waits for Hero to be loaded
+            yield return null;
+            HeroController.instance.SHADOW_DASH_COOLDOWN = 0f;
             _fsm = GameObject.Find("Charm Effects").LocateMyFSM("Fury");
             _fsm.ChangeTransition("Check HP", "CANCEL", "Get Ref"); //Ensures the fsm does not cancel when HP is not at 1
             _fsm.RemoveTransition("Activate", "HERO DAMAGED"); //Ensures hp is not checked when hit
             _fsm.RemoveTransition("Activate", "HERO HEALED"); //Ensures hp is not checked when healed
             _fsm.RemoveTransition("Activate", "HERO HEALED FULL"); //Ensures hp is not checked when at bench
             _fsm.RemoveTransition("Activate", "ADD BLUE HEALTH"); //Ensures hp is not checked when lifeblood is received
+            _fsm.RemoveAction("Activate",21);
+            _fsm.RemoveAction("Activate",20);
+            _fsm.RemoveAction("Activate", 2);
+            _fsm.RemoveAction("Activate", 1);
 
             while (true)
             {
