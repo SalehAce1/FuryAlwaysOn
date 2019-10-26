@@ -22,7 +22,6 @@ namespace FuryAlwaysOn
         {
             yield return new WaitWhile(() => HeroController.instance == null); //Waits for Hero to be loaded
             yield return null;
-            HeroController.instance.SHADOW_DASH_COOLDOWN = 0f;
             _fsm = GameObject.Find("Charm Effects").LocateMyFSM("Fury");
             _fsm.ChangeTransition("Check HP", "CANCEL", "Get Ref"); //Ensures the fsm does not cancel when HP is not at 1
             _fsm.RemoveTransition("Activate", "HERO DAMAGED"); //Ensures hp is not checked when hit
@@ -33,6 +32,11 @@ namespace FuryAlwaysOn
             _fsm.RemoveAction("Activate",20);
             _fsm.RemoveAction("Activate", 2);
             _fsm.RemoveAction("Activate", 1);
+            _fsm.RemoveAction("Activate", 0);
+            HeroController.instance.grubberFlyBeamPrefabL = HeroController.instance.grubberFlyBeamPrefabL_fury;
+            HeroController.instance.grubberFlyBeamPrefabR = HeroController.instance.grubberFlyBeamPrefabR_fury;
+            HeroController.instance.grubberFlyBeamPrefabU = HeroController.instance.grubberFlyBeamPrefabU_fury;
+            HeroController.instance.grubberFlyBeamPrefabD = HeroController.instance.grubberFlyBeamPrefabD_fury;
 
             while (true)
             {
