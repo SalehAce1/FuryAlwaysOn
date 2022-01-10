@@ -2,6 +2,7 @@
 using UnityEngine;
 using Logger = Modding.Logger;
 using USceneManager = UnityEngine.SceneManagement.SceneManager;
+using Vasi;
 
 namespace FuryAlwaysOn
 {
@@ -19,16 +20,16 @@ namespace FuryAlwaysOn
 			yield return new WaitWhile(() => HeroController.instance == null); //Waits for Hero to be loaded
 			yield return null;
 			_fsm = GameObject.Find("Charm Effects").LocateMyFSM("Fury");
-			_fsm.ChangeTransition("Check HP", "CANCEL", "Get Ref"); //Ensures the fsm does not cancel when HP is not at 1
-			_fsm.RemoveTransition("Activate", "HERO DAMAGED");      //Ensures hp is not checked when hit
-			_fsm.RemoveTransition("Activate", "HERO HEALED");       //Ensures hp is not checked when healed
-			_fsm.RemoveTransition("Activate", "HERO HEALED FULL");  //Ensures hp is not checked when at bench
-			_fsm.RemoveTransition("Activate", "ADD BLUE HEALTH");   //Ensures hp is not checked when lifeblood is received
-			_fsm.RemoveAction("Activate", 21);
-			_fsm.RemoveAction("Activate", 20);
-			_fsm.RemoveAction("Activate", 2);
-			_fsm.RemoveAction("Activate", 1);
-			_fsm.RemoveAction("Activate", 0);
+			_fsm.ChangeTransition("Check HP", "CANCEL", "Get Ref");         //Ensures the fsm does not cancel when HP is not at 1
+			_fsm.GetState("Activate").RemoveTransition("HERO DAMAGED");     //Ensures hp is not checked when hit
+			_fsm.GetState("Activate").RemoveTransition("HERO HEALED");      //Ensures hp is not checked when healed
+			_fsm.GetState("Activate").RemoveTransition("HERO HEALED FULL"); //Ensures hp is not checked when at bench
+			_fsm.GetState("Activate").RemoveTransition("ADD BLUE HEALTH");  //Ensures hp is not checked when lifeblood is received
+			_fsm.GetState("Activate").RemoveAction(21);
+			_fsm.GetState("Activate").RemoveAction(20);
+			_fsm.GetState("Activate").RemoveAction(2);
+			_fsm.GetState("Activate").RemoveAction(1);
+			_fsm.GetState("Activate").RemoveAction(0);
 			HeroController.instance.grubberFlyBeamPrefabL = HeroController.instance.grubberFlyBeamPrefabL_fury;
 			HeroController.instance.grubberFlyBeamPrefabR = HeroController.instance.grubberFlyBeamPrefabR_fury;
 			HeroController.instance.grubberFlyBeamPrefabU = HeroController.instance.grubberFlyBeamPrefabU_fury;
