@@ -16,7 +16,7 @@ namespace FuryAlwaysOn
         public override void Initialize()
         {
             Instance = this;
-            Log("Initalizing.");
+            Log("Initializing.");
 
             Unload(); //Ensures two instances of this mod are not working at the same time
             ModHooks.AfterSavegameLoadHook += AfterSaveGameLoad; //Runs when a save file is chosen
