@@ -18,8 +18,8 @@ namespace FuryAlwaysOn
 			Instance = this;
 			Log("Initializing.");
 
-			Unload();                                            //Ensures two instances of this mod are not working at the same time
-			ModHooks.AfterSavegameLoadHook += AfterSaveGameLoad; //Runs when a save file is chosen
+			Unload();                                            // Ensures two instances of this mod are not working at the same time
+			ModHooks.AfterSavegameLoadHook += AfterSaveGameLoad; // Runs when a save file is chosen
 			ModHooks.NewGameHook           += AddComponent;
 		}
 
@@ -27,7 +27,7 @@ namespace FuryAlwaysOn
 
 		private void AddComponent()
 		{
-			GameManager.instance.gameObject.AddComponent<EffectFixer>(); //Begins class EffectFixer when a new save file loads
+			GameManager.instance.gameObject.AddComponent<EffectFixer>(); // Begins class EffectFixer when a new save file loads
 		}
 
 		public void Unload()

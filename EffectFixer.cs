@@ -17,14 +17,14 @@ namespace FuryAlwaysOn
 
 		IEnumerator WaitForPlayer()
 		{
-			yield return new WaitWhile(() => HeroController.instance == null); //Waits for Hero to be loaded
+			yield return new WaitWhile(() => HeroController.instance == null); // Waits for Hero to be loaded
 			yield return null;
 			_fsm = GameObject.Find("Charm Effects").LocateMyFSM("Fury");
-			_fsm.ChangeTransition("Check HP", "CANCEL", "Get Ref");         //Ensures the fsm does not cancel when HP is not at 1
-			_fsm.GetState("Activate").RemoveTransition("HERO DAMAGED");     //Ensures hp is not checked when hit
-			_fsm.GetState("Activate").RemoveTransition("HERO HEALED");      //Ensures hp is not checked when healed
-			_fsm.GetState("Activate").RemoveTransition("HERO HEALED FULL"); //Ensures hp is not checked when at bench
-			_fsm.GetState("Activate").RemoveTransition("ADD BLUE HEALTH");  //Ensures hp is not checked when lifeblood is received
+			_fsm.ChangeTransition("Check HP", "CANCEL", "Get Ref");         // Ensures the FSM does not cancel when HP is not at 1
+			_fsm.GetState("Activate").RemoveTransition("HERO DAMAGED");     // Ensures HP is not checked when hit
+			_fsm.GetState("Activate").RemoveTransition("HERO HEALED");      // Ensures HP is not checked when healed
+			_fsm.GetState("Activate").RemoveTransition("HERO HEALED FULL"); // Ensures HP is not checked when at bench
+			_fsm.GetState("Activate").RemoveTransition("ADD BLUE HEALTH");  // Ensures HP is not checked when Lifeblood is received
 			_fsm.GetState("Activate").RemoveAction(21);
 			_fsm.GetState("Activate").RemoveAction(20);
 			_fsm.GetState("Activate").RemoveAction(2);
@@ -37,11 +37,11 @@ namespace FuryAlwaysOn
 
 			while (true)
 			{
-				if (PlayerData.instance.equippedCharm_6 && _fsm.ActiveStateName == "Idle") //Turns on fury when equipped
+				if (PlayerData.instance.equippedCharm_6 && _fsm.ActiveStateName == "Idle") // Turns on Fury when equipped
 				{
 					_fsm.SendEvent("HERO DAMAGED"); //Starts
 				}
-				if (!PlayerData.instance.equippedCharm_6 && _fsm.ActiveStateName == "Activate") //Turns of fury when not equipped
+				if (!PlayerData.instance.equippedCharm_6 && _fsm.ActiveStateName == "Activate") // Turns off Fury when not equipped
 				{
 					_fsm.SetState("Deactivate");
 				}
