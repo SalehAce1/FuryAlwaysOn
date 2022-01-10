@@ -1,11 +1,5 @@
 ﻿using System.Collections;
-using System.Reflection;
-using System;
-using HutongGames.PlayMaker.Actions;
-using ModCommon;
-using ModCommon.Util;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Logger = Modding.Logger;
 using USceneManager = UnityEngine.SceneManagement.SceneManager;
 
