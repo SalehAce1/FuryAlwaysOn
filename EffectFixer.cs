@@ -25,11 +25,11 @@ namespace FuryAlwaysOn
 			_fsm.GetState("Activate").RemoveTransition("HERO HEALED");      // Ensures HP is not checked when healed
 			_fsm.GetState("Activate").RemoveTransition("HERO HEALED FULL"); // Ensures HP is not checked when at bench
 			_fsm.GetState("Activate").RemoveTransition("ADD BLUE HEALTH");  // Ensures HP is not checked when Lifeblood is received
-			_fsm.GetState("Activate").RemoveAction(0);                      // Disables Fury audio effects
-			_fsm.GetState("Activate").RemoveAction(1);                      // Required(?) to disable the rest of the effects
-			_fsm.GetState("Activate").RemoveAction(2);                      // Disables Fury particle effects
-			_fsm.GetState("Activate").RemoveAction(20);                     // Disables Fury burst effect
 			_fsm.GetState("Activate").RemoveAction(21);                     // Disables Fury vignette
+			_fsm.GetState("Activate").RemoveAction(20);                     // Disables Fury burst effect
+			_fsm.GetState("Activate").RemoveAction(2);                      // Disables Fury particle effects
+			_fsm.GetState("Activate").RemoveAction(1);                      // Required(?) to disable the rest of the effects
+			_fsm.GetState("Activate").RemoveAction(0);                      // Disables Fury audio effects
 
 			// Gives Grubberfly beams their Fury color
 			HeroController.instance.grubberFlyBeamPrefabL = HeroController.instance.grubberFlyBeamPrefabL_fury;
