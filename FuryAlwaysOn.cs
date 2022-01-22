@@ -29,7 +29,7 @@ namespace FuryAlwaysOn
 		public void ChangeGWFuryCondition(ILContext il)
 		{
 			ILCursor cursor = new ILCursor(il).Goto(0);
-			if (cursor.TryGotoNext(MoveType.Before, i => i.Match(OpCodes.Ldc_I4_1)))
+			if (cursor.TryGotoNext(MoveType.After, i => i.MatchCallvirt<PlayerData>("GetInt")))
 			{
 				Logger.Log("LdcI4 was found");
 				cursor.Emit(OpCodes.Pop);
