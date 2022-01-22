@@ -8,14 +8,11 @@ namespace FuryAlwaysOn
 {
 	internal class EffectFixer : MonoBehaviour
 	{
-		PlayMakerFSM fsm;
+		private PlayMakerFSM fsm;
 
-		private void Start()
-		{
-			StartCoroutine(WaitForPlayer());
-		}
+		private void Start() => StartCoroutine(WaitForPlayer());
 
-		IEnumerator WaitForPlayer()
+		private IEnumerator WaitForPlayer()
 		{
 			yield return new WaitWhile(() => HeroController.instance == null); // Waits for Hero to be loaded
 			yield return null;
@@ -51,11 +48,6 @@ namespace FuryAlwaysOn
 			}
 		}
 
-
-
-		public static void Log(object o)
-		{
-			Logger.Log("[EffectFixer] " + o);
-		}
+		public static void Log(object message) => Logger.Log("[EffectFixer] " + message);
 	}
 }
